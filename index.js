@@ -14,6 +14,13 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors())
 app.use(express.json())
 
+require('./models/Model');
+console.log("Models synchronised")
+
+const proCtrl = require('./controllers/productCtrl');
+app.post('/addproduct',proCtrl.addProduct);
+app.get('/getproducts',proCtrl.getProducts);
+
 const PORT = process.env.PORT || 5000;
 app.listen(PORT,()=>{
     console.log(`listening to post ${PORT}`);
