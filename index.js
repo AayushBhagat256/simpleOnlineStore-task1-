@@ -18,8 +18,11 @@ require('./models/Model');
 console.log("Models synchronised")
 
 const proCtrl = require('./controllers/productCtrl');
+// CRUD Operations for products
 app.post('/addproduct',proCtrl.addProduct);
 app.get('/getproducts',proCtrl.getProducts);
+app.get('/getproduct/:id',proCtrl.getproductID);
+app.patch('/updateProduct/:id',proCtrl.updateProduct);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT,()=>{

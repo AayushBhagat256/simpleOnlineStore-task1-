@@ -35,9 +35,51 @@ const getProducts = async (req, res) => {
     }
 };
 
+//get products by ID
+const getproductID = async (req,res) => {
+    try{
+        const proID = req.params.id;
+        const products = await product.findByPk(proID);
+        res.status(200).json(products);
+    }catch (error) {
+        console.error('Error retrieving Products:', error);
+        res.status(500).json({
+          message: "Error retrieving Products",
+        });
+    }
+}
+
+//updating with ID
+const updateProduct = async (req, res) => {
+    try {
+      const proId = req.params.id;
+      const updatedFields = req.body;
+  
+      const Product = await product.findByPk(proId);
+  
+      if (!Product) {
+        return res.status(404).json({ message: 'Product not found' });
+      }
+  
+      await Product.update(updatedFields);
+  
+      res.status(200).json({
+        message: 'Product updated successfully',
+        data: Product,
+      });
+    } catch (error) {
+      console.error('Error updating Product:', error);
+      res.status(500).json({
+        message: 'Error updating Product',
+      });
+    }
+};
+
 
 
 module.exports = {
     addProduct,
     getProducts,
+    getproductID,
+    updateProduct,
 }
