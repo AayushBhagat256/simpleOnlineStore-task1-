@@ -25,6 +25,12 @@ app.get('/getproduct/:id',proCtrl.getproductID);
 app.patch('/updateProduct/:id',proCtrl.updateProduct);
 app.delete('/deletePro/:id',proCtrl.deletePro);
 
+const ordCtrl = require('./controllers/orderCtrl');
+// CRUD Operations for Orders
+app.post('/addorder',ordCtrl.createOrder);
+app.get('/getorders',ordCtrl.getOrder);
+app.get('/getordid/:id',ordCtrl.getOrderById);
+
 const PORT = process.env.PORT || 5000;
 app.listen(PORT,()=>{
     console.log(`listening to post ${PORT}`);

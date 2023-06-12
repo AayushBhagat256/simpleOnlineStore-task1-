@@ -21,10 +21,17 @@ const db = {};
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
+
+
 // db.contact = require('./contact')(sequelize,DataTypes)
 // db.user = require('./user')(sequelize,DataTypes,Model)
 db.product  = require('./product')(sequelize,DataTypes,Model)
+db.order = require('./orders')(sequelize,DataTypes,Model)
 
-db.sequelize.sync({force:false});
+db.order.belongsTo(db.product);
+db.product.hasMany(db.order)
+db.sequelize.sync();
+
+// db.sequelize.sync({force:false});
 
 module.exports = db
