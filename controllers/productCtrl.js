@@ -75,6 +75,25 @@ const updateProduct = async (req, res) => {
     }
 };
 
+//deleting a product 
+const deletePro = async (req, res) => {
+    try {
+      const proId = req.params.id;
+      const pro = await product.findByPk(proId);
+  
+      if (!pro) {
+        return res.status(404).json({ message: 'User not found' });
+      }
+  
+      await pro.destroy();
+  
+      res.status(200).json({ message: 'Product deleted successfully' });
+    } catch (error) {
+      console.error('Error deleting Product:', error);
+      res.status(500).json({ message: 'Error deleting Product' });
+    }
+};
+
 
 
 module.exports = {
@@ -82,4 +101,5 @@ module.exports = {
     getProducts,
     getproductID,
     updateProduct,
+    deletePro,
 }

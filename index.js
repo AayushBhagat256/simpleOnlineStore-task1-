@@ -23,6 +23,7 @@ app.post('/addproduct',proCtrl.addProduct);
 app.get('/getproducts',proCtrl.getProducts);
 app.get('/getproduct/:id',proCtrl.getproductID);
 app.patch('/updateProduct/:id',proCtrl.updateProduct);
+app.delete('/deletePro/:id',proCtrl.deletePro);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT,()=>{
